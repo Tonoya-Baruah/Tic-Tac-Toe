@@ -20,7 +20,7 @@
 }
 
 body{
-				background: url("https://i.pinimg.com/originals/19/e9/66/19e9665400ecb58d7d308f21c2f9ddd0.gif");
+				background: url("https://i.pinimg.com/originals/19/e9/66/19e9665400ecb58d7d308f21c2f9ddd0.gif") repeat;
 				background-size: cover;
 }
 
@@ -83,14 +83,23 @@ body{
 }
 
 .box:hover{
-				background: #E6E6E6;
-				color: #4b1475;
+				background:  #4b1475 ;
+				color: #E6E6E6 ;
 }
 
 .text{
 				font-size: 8vw;
+				position: relative;
+				color: #E6E6E6;
 				
 }
+		.x{
+					width:2vw;
+					background: black;	
+		}
+		.o::after{
+						content: 'O'
+		}
 
 @media screen and (max-width: 600px)
 {
@@ -138,4 +147,27 @@ body{
 									
 									<script src="tic-tac-toe.js"></script> 
 					</body> 
+					<script>
+									let turn = "X"
+let boxes = document.getElementsByClassName("box");
+
+
+// Function to change the turn
+				const changeTurn = ()=>{
+    return turn === "X"? "0": "X"
+}
+
+
+//Game Logic
+
+Array.from(boxes).forEach(element =>{
+    let text = element.querySelector('.text');
+    element.addEventListener('click', ()=>{
+        if(text.innerText === ''){
+            text.innerText = turn;
+            turn = changeTurn();
+        }
+    })
+})
+					</script>
 	</html>
