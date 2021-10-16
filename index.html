@@ -1,143 +1,141 @@
-<!doctype html> 
-<html lang="en">
-				 
-				<head>
+<!DOCTYPE html> 
+<html lang="en"> 
+				<head> 
 								
-				<meta charset="utf-8"> 
-				<meta name="viewport" content="width=device-width, initial-scale=1">
-				
-				<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> 
-				
-				<style>
-								@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400&display=swap');
-								@import url('https://fonts.googleapis.com/css2?family=Andada+Pro:ital,wght@1,500&display=swap');
-								.gameContainer{
-												margin-bottom: 10em;
-												display: grid;
-												grid-template-columns: repeat(2, 50vw);
-								}
-								.game{
-												display: grid;
-												grid-template-columns: repeat(3, 11vw) ;
-												grid-template-rows: repeat(3, 11vw);
-												margin: 3em 1em 0 4em;
-								}
-								
-								.box{
-										border: 2px solid black;	
-										transition: background-color 0.2s ease-in-out;
-								}
-								
-								.box:hover{
-											background-color: #e6e6ff;
-								}
-								
-							.textBox{
-											display: flex;
-											justify-content: center;
-											margin: auto;
-											align-content: center;
-											align-items: center;
-											font-size: 7vw;
-								}
-							 .bt-0{
-							 				border-top: 0;
-							 }
-							 .br-0{
-							 				border-right: 0;
-							 }
-							 .bl-0{
-							 				border-left: 0;
-							 }
-							 .bb-0{
-							 				border-bottom: 0;
-							 }
-							 .gameInfo h2{
-							 				font-size: 2.5vw;
-							 				margin: 3em 2em 1em 0em;
-							 				color: #000066;
-							 				font-family: Georgia, serif;
-								   letter-spacing: 2px;
-											word-spacing: 2px;
-											font-weight: 800;
-								   text-decoration: none;
-											font-style: normal;
-											font-variant: small-caps;
-											text-transform: none;
-											
-							 }
-							 
-							 #reset{
-							 				padding: 1.5vw 3.6vw;
-							 				margin: 2em 3em 3em 1em;
-							 				font-family: 'Urbanist', sans-serif;
-							 				font-weight: 800;
-											background: none;
-											border-radius: 50px;
-											box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-											transition: background 0.9s	;			 				
-							 }
-							 #reset:hover{
-							 				background: #e6e6ff;
-							 }
-							 
-							.img {
-										transition: width 1s;
-										width: 0;
-							}
+								<meta charset="UTF-8"> 
+								<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+								<meta http-equiv="X-UA-Compatible" content="ie=edge">
+								 
+								<title> Play Tic-Tac-Toe | Online Games | Tonoya Baruah</title> 
+							<!--- 	<link rel="stylesheet" href="tic-tac-toe.css">--->
 							
-				</style>
+								<style>
+												
+				@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+				@import url('https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap');
+
+*{
+				margin: 0;
+				padding: 0;
+}
+
+body{
+				background: url("https://i.pinimg.com/originals/19/e9/66/19e9665400ecb58d7d308f21c2f9ddd0.gif");
+				background-size: cover;
+}
+
+.head{
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin: 2em 0 2em 0;
+				flex-direction: column;
+}
+
+.head h1{
+				font-family: 'Architects Daughter', cursive;
+				font-size: 3vw;
+				color: #ffffff;
+				font-weight: 200;
+}
+
+#reset{
+				width: 15vw;
+				height: 5vw;
+				font-size: 1.4vw;
+				padding: 1em 3em;
+				margin-top: 1.5em ;
+				border-radius: 25em;
+				font-family: 'Gideon Roman', cursive;
+				text-transform: uppercase;
+				font-weight: bold;
+				background: none;
+				color: #ffeaff;
+				border: 2px solid #ffffff;
+				transition: background 0.3s ease-in-out;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+}
+
+#reset:hover{
+				background: #caaaff;
+				color: #000000 ;
+}
+
+.main{
+				margin-bottom: 10em;
+				display: grid;
+				justify-content: center;
+				align-content: center;
 				
-				<title> Play Tic Tac Toe | Online Games</title> 
+				grid-template-columns: repeat(3, 11vw);
+				grid-template-rows: repeat(3, 11vw);
+}
+
+.box{
+				border: 2px solid #ffffff;
+				transition: background 0.3s ease-in;
+				display: flex;
+				justify-content: center;
+				color: #ffffff;
+				align-items: center;
+}
+
+.box:hover{
+				background: #E6E6E6;
+				color: #4b1475;
+}
+
+.text{
+				font-size: 8vw;
 				
-		</head>
-		
-		 
-		<body> 
-									<nav class="navbar navbar-light" style="background-color: #000080 ;"> 
-													<div class="container-fluid"> 
-																	<span class="navbar-brand mb-0 h1" style="font-weight: bold; color: white; font-family: 'Urbanist', sans-serif;"> Tic Tac Toe </span> 
-													</div> 
-									</nav>
-						
-						<div class="gameContainer">
-									<div class="game">
-													<div class="box bt-0 bl-0"> <span class="textBox" onclick="changeturn"></span></div>
-												 <div class="box bt-0"> <span class="textBox"></span></div>	
-												 <div class="box bt-0 br-0"> <span class="textBox"></span></div>
-												 <div class="box bl-0"> <span class="textBox"></span></div>
-												 <div class="box"> <span class="textBox"></span></div>
-												 <div class="box br-0"> <span class="textBox"></span></div>
-												 <div class="box bb-0 bl-0"> <span class="textBox"></span></div>
-												 <div class="box bb-0"> <span class="textBox"></span></div>
-												 <div class="box bb-0 br-0"> <span class="textBox"></span></div>	 
-									</div>	
+}
+
+@media screen and (max-width: 600px)
+{
+				.main{
+				margin-bottom: 10em;
+				display: grid;
+				justify-content: center;
+				align-content: center;
+				grid-template-columns: repeat(3, 18vw);
+				grid-template-rows: repeat(3, 16vw);
+				}
+
+				.box{
+								border: 1px solid white ;
+				}
+}
+								</style> 
+					</head> 
+					<body> 	
 									
-									<div class="gameInfo">
-													<h2>
-																	WELCOME TO TIC TAC TOE!
-													</h2>
-													
-													
-													<h5> TURN FOR </h5>
-													
-													
-													<button id="reset"> RESET </button>
+									<div id="game">
+													<div class="head">
+																	<h1> Welcome to TicTacToe Game!</h1>
+																	<button id="reset"> Reset </button> 
+													</div>
+													<div class="main">
+													<div class="box"> <span class="text">X</span></div>
+													<div class="box"> <span class="text">X</span></div>
+													<div class="box"> <span class="text">X</span></div>
+													<div class="box"> <span class="text">X</span></div>
+													<div class="box"> <span class="text">X</span></div>
+													<div class="box"> <span class="text">X</span></div>
+													<div class="box"> <span class="text">X</span></div>
+													<div class="box"> <span class="text">X</span></div>
+													<div class="box"> <span class="text">X</span></div>
+													</div>
+									</div>
 									
-									<!-- <div class="gif"> -->
-									<img src="https://c.tenor.com/JY2fRmOGB1UAAAAM/cheer-happy.gif" alt="Excited Gif" class="img"></img>
-									</div>
-									</div>
-						</div>
-						
-						
-						
-						
-						
-						
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-				<script>
-								let turn="X"
-				</script> 
-</body> 
-</html>
+									
+									
+									
+									
+									
+									
+									
+									<script src="tic-tac-toe.js"></script> 
+					</body> 
+	</html>
