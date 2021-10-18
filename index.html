@@ -7,12 +7,15 @@
 								<meta http-equiv="X-UA-Compatible" content="ie=edge">
 								 
 								<title> Play Tic-Tac-Toe | Online Games | Tonoya Baruah</title> 
-							<!--- 	<link rel="stylesheet" href="tic-tac-toe.css">--->
+							 <!-- 	<link rel="stylesheet" href="tic-tac-toe.css">-->
+							 
 							<link rel="shortcut icon" type="image/jpg" href="https://cdn.icon-icons.com/icons2/390/PNG/512/tic-tac-toe_39453.png"/>
-								<style>
-												
-				@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
-				@import url('https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap');
+							
+							
+						<style>
+										@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@200&display=swap');
 
 *{
 				margin: 0;
@@ -20,9 +23,10 @@
 }
 
 body{
-				background: url("https://i.pinimg.com/originals/19/e9/66/19e9665400ecb58d7d308f21c2f9ddd0.gif") repeat;
+				background: url("https://i.pinimg.com/originals/19/e9/66/19e9665400ecb58d7d308f21c2f9ddd0.gif");
 				background-size: cover;
 }
+
 
 .head{
 				display: flex;
@@ -32,12 +36,31 @@ body{
 				flex-direction: column;
 }
 
+.info{
+				margin: 0.5em 0;
+				font-family: 'Noto Sans Mono', monospace;
+				font-size: 1.7vw;
+
+
+}
 .head h1{
 				font-family: 'Architects Daughter', cursive;
 				font-size: 3vw;
 				color: #ffffff;
 				font-weight: 200;
 }
+.head img{
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: absolute ;
+				right: 12%;	
+				top: 30%;
+				width: 20vw;
+				height: 19vw;			
+				
+}
+
 
 #reset{
 				width: 15vw;
@@ -73,6 +96,11 @@ body{
 				grid-template-rows: repeat(3, 11vw);
 }
 
+
+.box-not{
+				cursor: not-allowed;
+				pointer-events: none;
+}
 .box{
 				border: 2px solid #ffffff;
 				transition: background 0.3s ease-in;
@@ -84,22 +112,13 @@ body{
 
 .box:hover{
 				background: #E6E6E6;
-				color:  #4b1475;
+				color: #4b1475;
 }
 
 .text{
 				font-size: 8vw;
-				position: relative;
-				color: #4b1475;
 				
 }
-		.x{
-					width:2vw;
-					background: black;	
-		}
-		.o::after{
-						content: 'O'
-		}
 
 @media screen and (max-width: 600px)
 {
@@ -115,16 +134,26 @@ body{
 				.box{
 								border: 1px solid white ;
 				}
+				
+				.head img{
+								position: absolute;
+								top: 40%;
+								right: 40%;
+				}
 }
-								</style> 
+
+						</style>		
+											 
 					</head> 
 					<body> 	
-									
 									<div id="game">
 													<div class="head">
-																	<h1 onclick="header()"> Welcome to TicTacToe Game!</h1>
+																	<h1> Welcome to TicTacToe Game!</h1>
+																	<h5 class="info" style="color: white;"> Turn for X</h5>
+																	<!-- <img src="https://c.tenor.com/lCwhnbxUY88AAAAM/kawaii-kitty-emri.gif" alt=""> -->
 																	<button id="reset"> Reset </button> 
 													</div>
+													
 													<div class="main">
 													<div class="box"> <span class="text"></span></div>
 													<div class="box"> <span class="text"></span></div>
@@ -136,7 +165,7 @@ body{
 													<div class="box"> <span class="text"></span></div>
 													<div class="box"> <span class="text"></span></div>
 													</div>
-									</div>
+										</div>
 									
 									
 									
@@ -145,29 +174,70 @@ body{
 									
 									
 									
-									<script src="tic-tac-toe.js"></script> 
-					</body> 
-				<!-- 	<script>
-									let turn = "X"
-let boxes = document.getElementsByClassName("box");
+									<!--<script src="tic-tac-toe.js"></script>--> 
+					</body>
+					<script>
+									let turn = "X";
+let gameOver = false;
+let text = document.getElementsByClassName('text');
+const box = document.getElementsByClassName('box');
+let resetbtn = document.getElementById("reset");
 
-
-// Function to change the turn
-				const changeTurn = ()=>{
-    return turn === "X"? "0": "X"
+ 
+// Function for Changing Turns
+const changeTurn = ()=>{
+				return turn === "X"? "O": "X";
 }
 
 
-//Game Logic
+// To check Win 
+const checkWin = ()=>{
+				//let text = document.querySelector('.text');
+				let winningCell = [
+								[0, 1, 2],
+								[3, 4, 5],
+								[6, 7, 8],
+								[0, 3, 6],
+								[1, 4, 7],
+								[2, 5, 8],
+								[0, 4, 8],
+								[2, 4, 6],
+				]
+				winningCell.forEach(e =>{
+								if ((text[e[0]].innerText === text[e[1]].innerText) && (text[e[1]].innerText === text[e[2]].innerText) &&  (text[e[0]].innerText !== '')) {
+												gameOver = true;
+											document.querySelector('.info').innerText = text[e[0]].innerText + " Won";
+											Array.from(box).forEach(element =>{
+											//element.style.cursor = "not-allowed"
+											element.classList.add('box-not')
+											})
+								}
+				})
+}
 
-Array.from(boxes).forEach(element =>{
-    let text = element.querySelector('.text');
-    element.addEventListener('click', ()=>{
-        if(text.innerText === ''){
-            text.innerText = turn;
-            turn = changeTurn();
-        }
-    })
+// Game Logic
+
+Array.from(box).forEach(element =>{
+				let text = element.querySelector('.text');
+				element.addEventListener('click',  ()=>{
+								if(text.innerText === '') {
+									text.innerText = turn;
+									turn = changeTurn();
+									checkWin()
+																						
+									if(!gameOver) {
+													document.querySelector('.info').innerText = 'Turn for ' + turn;
+									}
+									 			
+								}
+				}) 
+}) 
+
+// Reset Button
+reset.addEventListener('click',  ()=>{
+				location.reload();
 })
-					</script> -->
+
+
+					</script>
 	</html>
