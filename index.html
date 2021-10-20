@@ -12,12 +12,13 @@
 							 <!-- 	<link rel="stylesheet" href="tic-tac-toe.css">-->
 							 
 							<link rel="shortcut icon" type="image/jpg" href="https://cdn.icon-icons.com/icons2/390/PNG/512/tic-tac-toe_39453.png"/>
-							
+							<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 							
 						<style>
 										@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
 
 *{
 				margin: 0;
@@ -90,11 +91,11 @@ body{
 }
 
 .main{
-				margin-bottom: 10em;
+				margin-bottom: 30px;
 				display: grid;
 				justify-content: center;
 				align-content: center;
-				
+				position: relative;
 				grid-template-columns: repeat(3, 11vw);
 				grid-template-rows: repeat(3, 11vw);
 }
@@ -123,6 +124,24 @@ body{
 				
 }
 
+.line{
+				background: #ffffff;
+				width: 0vw;
+				transition: width 1s ease-in-out;
+				height: 5px;
+				position: absolute;
+				transform: translate(34vw, 16vw) rotate(-45deg);
+				z-index: 1;
+}
+
+footer{
+				background: #380074;
+				border-radius: 25% 25% 0 0;
+				margin-bottom:0;
+				background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUMd-MtnKAPztlNNvlYy82DMFXP27ei3ACR9z_LYViALOZauZz&s) no-repeat;
+				box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+				color: #ffffff;
+}
 @media screen and (max-width: 600px)
 {
 				.main{
@@ -134,6 +153,9 @@ body{
 				grid-template-rows: repeat(3, 21vw);
 				}
 				
+				/*.line{
+								display:none;
+				}*/
 			.head h1{
 						font-size : 23px;
 						margin: 0 3em;
@@ -174,19 +196,33 @@ body{
 													</div>
 													
 													<div class="main">
+													<div class="line"></div>						
+													<div class="box" style="border-top: 0; border-left:0;"> <span class="text"></span></div>
+													<div class="box" style="border-top:0;"> <span class="text"></span></div>
+													<div class="box" style="border-top: 0; border-right:0;"> <span class="text"></span></div>
+													<div class="box" style="border-left:0;"> <span class="text"></span></div>
 													<div class="box"> <span class="text"></span></div>
-													<div class="box"> <span class="text"></span></div>
-													<div class="box"> <span class="text"></span></div>
-													<div class="box"> <span class="text"></span></div>
-													<div class="box"> <span class="text"></span></div>
-													<div class="box"> <span class="text"></span></div>
-													<div class="box"> <span class="text"></span></div>
-													<div class="box"> <span class="text"></span></div>
-													<div class="box"> <span class="text"></span></div>
+													<div class="box" style="border-right:0;"> <span class="text"></span></div>
+													<div class="box" style="border-bottom: 0; border-left:0;"> <span class="text"></span></div>
+													<div class="box" style="border-bottom: 0;"> <span class="text"></span></div>
+													<div class="box" style="border-bottom: 0; border-right:0;"> <span class="text"></span></div>
 													</div>
 										</div>
-									
-									
+										
+								<footer class="text-gray-600 body-font">
+  <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+    <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+      <span class="ml-3 text-xl text-white" style="font-family: 'Montserrat', sans-serif; font-weight: bold; letter-spacing: 2px;">Tonoya Baruah</span>
+    </a>
+    <p class="text-sm text-white sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2021 Tonoya Baruah  
+     </p>
+     
+    <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+     <a href = "mailto:tsbaruah2020@gmail.com" target="_blank"><h2 class="text-white">Feedback</h2></a>
+     
+    </span>   
+  </div>
+</footer>
 									
 									
 									
@@ -213,14 +249,14 @@ const changeTurn = ()=>{
 const checkWin = ()=>{
 				//let text = document.querySelector('.text');
 				let winningCell = [
-								[0, 1, 2],
-								[3, 4, 5],
-								[6, 7, 8],
-								[0, 3, 6],
-								[1, 4, 7],
-								[2, 5, 8],
-								[0, 4, 8],
-								[2, 4, 6],
+								[0, 1, 2, 33, 6, 0],
+								[3, 4, 5, 33, 16, 0],
+								[6, 7, 8, 33, 27, 0],
+								[0, 3, 6, 22, 16, 90],
+								[1, 4, 7, 33, 16, 90],
+								[2, 5, 8, 44, 16, 90],
+								[0, 4, 8, 33, 16, 45],
+								[2, 4, 6, 34, 16, -45]
 				]
 				winningCell.forEach(e =>{
 								if ((text[e[0]].innerText === text[e[1]].innerText) && (text[e[1]].innerText === text[e[2]].innerText) &&  (text[e[0]].innerText !== '')) {
@@ -229,6 +265,8 @@ const checkWin = ()=>{
 											Array.from(box).forEach(element =>{
 											//element.style.cursor = "not-allowed"
 											element.classList.add('box-not')
+           document.querySelector(".line").style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`
+            document.querySelector(".line").style.width = "33vw";
 											})
 								}
 				})
@@ -250,7 +288,8 @@ Array.from(box).forEach(element =>{
 									 			
 								}
 				}) 
-}) 
+})
+
 
 // Reset Button
 reset.addEventListener('click',  ()=>{
